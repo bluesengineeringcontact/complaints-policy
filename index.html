@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blues Engineering — Complaints Policy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#152647;
+    --navy-deep:#0d1a30;
+    --white:#ffffff;
+    --ice:#eef2f8;
+    --gold:#c99a3e;
+    --ink:#17202e;
+    --line:#c7d2e3;
+    --line-soft:#dde5f0;
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--ice);
+    color:var(--ink);
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  a{color:inherit;}
+  :focus-visible{outline:3px solid var(--gold); outline-offset:2px;}
+
+  .wrap{max-width:640px; margin:0 auto; padding:0 20px 64px;}
+
+  /* ---- Header / scoreboard ---- */
+  header{
+    background:linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color:var(--white);
+    padding:36px 20px 30px;
+    position:relative;
+    overflow:hidden;
+    animation:fadeDown 0.5s ease-out both;
+  }
+  header::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 28px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 28px);
+    pointer-events:none;
+  }
+  .header-inner{max-width:600px; margin:0 auto; position:relative;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--gold);
+    border-radius:50%;
+    display:inline-block;
+  }
+  h1{
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:800;
+    text-transform:uppercase;
+    font-size:clamp(38px,10vw,54px);
+    line-height:0.95;
+    letter-spacing:0.01em;
+    margin:0 0 6px;
+  }
+  .subhead{
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:600;
+    font-size:20px;
+    letter-spacing:0.02em;
+    color:#c9d4e8;
+    text-transform:uppercase;
+    margin:0 0 18px;
+  }
+  .header-note{
+    font-size:14.5px;
+    color:#aebbd4;
+    max-width:46ch;
+    margin:0;
+  }
+  .updated{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:#8ea0c2;
+    margin-top:18px;
+    letter-spacing:0.02em;
+  }
+
+  /* ---- CTA row ---- */
+  .cta-row{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:28px;
+    position:relative;
+    animation:fadeUp 0.5s ease-out 0.1s both;
+  }
+  .btn{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:16px 18px;
+    border-radius:10px;
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:700;
+    font-size:19px;
+    letter-spacing:0.01em;
+    text-decoration:none;
+    text-transform:uppercase;
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:active{transform:scale(0.98);}
+  .btn-primary{
+    background:var(--gold);
+    color:var(--navy-deep);
+  }
+  .btn-primary:hover{box-shadow:0 6px 18px rgba(201,154,62,0.35);}
+  .btn-secondary{
+    background:rgba(255,255,255,0.08);
+    color:var(--white);
+    border:1px solid rgba(255,255,255,0.25);
+  }
+  .btn-secondary:hover{background:rgba(255,255,255,0.14);}
+  .btn-arrow{font-size:18px; opacity:0.8;}
+
+  /* ---- Body sections ---- */
+  main{margin-top:34px;}
+
+  .clause{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:16px 18px;
+    padding:22px 0;
+    border-top:1px solid var(--line-soft);
+    animation:fadeUp 0.5s ease-out both;
+  }
+  .clause:last-of-type{border-bottom:1px solid var(--line-soft);}
+
+  .clause-num{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    font-weight:600;
+    color:var(--navy);
+    background:var(--white);
+    border:1px solid var(--line);
+    width:40px; height:26px;
+    border-radius:6px;
+    display:flex; align-items:center; justify-content:center;
+    letter-spacing:0.02em;
+  }
+  .clause-body h2{
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    font-size:19px;
+    margin:2px 0 8px;
+    color:var(--navy);
+  }
+  .clause-body p, .clause-body ul{
+    margin:0;
+    font-size:15px;
+    color:#2c3548;
+  }
+  .clause-body ul{padding-left:18px; margin-top:4px;}
+  .clause-body li{margin-bottom:5px;}
+  .clause-body li:last-child{margin-bottom:0;}
+  .fine{
+    font-size:13.5px;
+    color:#5b6580;
+    margin-top:6px;
+  }
+
+  /* ---- Contact / seal block ---- */
+  .contact-block{
+    margin-top:8px;
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:24px 22px;
+    display:flex;
+    gap:18px;
+    align-items:flex-start;
+    animation:fadeUp 0.5s ease-out both;
+  }
+  .seal{
+    flex:0 0 auto;
+    width:58px; height:58px;
+    border-radius:50%;
+    border:2px dashed var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:9.5px;
+    font-weight:600;
+    letter-spacing:0.03em;
+    text-align:center;
+    color:var(--navy);
+    line-height:1.2;
+    padding:4px;
+  }
+  .contact-text h3{
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:700;
+    text-transform:uppercase;
+    font-size:17px;
+    margin:0 0 6px;
+    color:var(--navy);
+  }
+  .contact-text p{margin:0 0 4px; font-size:14.5px;}
+  .contact-text a.email{
+    font-weight:600;
+    color:var(--navy);
+    text-decoration:underline;
+    text-decoration-color:var(--gold);
+    text-underline-offset:3px;
+  }
+  .alt-contact{
+    margin-top:10px;
+    padding-top:10px;
+    border-top:1px dashed var(--line);
+    font-size:13.5px;
+    color:#5b6580;
+  }
+  .alt-contact a{font-weight:600; text-decoration:underline;}
+
+  footer{
+    margin-top:36px;
+    text-align:center;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    color:#5b6580;
+    letter-spacing:0.02em;
+  }
+
+  @keyframes fadeDown{from{opacity:0; transform:translateY(-10px);} to{opacity:1; transform:translateY(0);}}
+  @keyframes fadeUp{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="eyebrow">Official &middot; EngSoc Affiliated Club</div>
+    <h1>Blues Engineering</h1>
+    <p class="subhead">Complaints Policy</p>
+    <p class="header-note">How to raise a concern about anyone acting on behalf of Blues Engineering — officers, executives, or members representing the club.</p>
+    <p class="updated">Last updated: July 14, 2026</p>
+  </div>
+
+  <div class="wrap" style="padding:0;">
+    <div class="cta-row" style="padding:0 20px;">
+      <a class="btn btn-primary" href="https://skule.github.io/bylaws/policies/policy-on-complaints.html" target="_blank" rel="noopener">
+        Read the full policy <span class="btn-arrow">&rarr;</span>
+      </a>
+      <a class="btn btn-secondary" href="mailto:ombudsperson@g.skule.ca">
+        Email the Ombudsperson <span class="btn-arrow">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <main>
+
+    <div class="clause">
+      <div class="clause-num">01</div>
+      <div class="clause-body">
+        <h2>Who you can complain about</h2>
+        <p>Officers, Project Directors (and members of their team), Board of Directors members, and Affiliated Club members — including anyone on the Blues Engineering exec acting in an official capacity.</p>
+      </div>
+    </div>
+
+    <div class="clause">
+      <div class="clause-num">02</div>
+      <div class="clause-body">
+        <h2>Valid reasons for a complaint</h2>
+        <ul>
+          <li>Harassment, sexual violence, defamation, or slander</li>
+          <li>Failure to carry out their role</li>
+          <li>Violations of the U of T Code of Student Conduct or the EngSoc Standards of Affiliation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="clause">
+      <div class="clause-num">03</div>
+      <div class="clause-body">
+        <h2>Can it be anonymous?</h2>
+        <p>Yes — unless your identity as the complainant is necessary to investigate the complaint.</p>
+      </div>
+    </div>
+
+    <div class="clause">
+      <div class="clause-num">04</div>
+      <div class="clause-body">
+        <h2>What your complaint needs</h2>
+        <p>Enough detail for the Ombudsperson to begin an investigation.</p>
+      </div>
+    </div>
+
+    <div class="clause">
+      <div class="clause-num">05</div>
+      <div class="clause-body">
+        <h2>Possible responses</h2>
+        <ul>
+          <li>No action taken (insufficient proof, not misconduct, or outside the role's time period)</li>
+          <li>An offer to mediate a solution</li>
+          <li>A factual recommendation report, decided by vote of the relevant executive body (typically the Club Affiliation Committee or Board of Directors), with privacy protected throughout</li>
+        </ul>
+        <p class="fine">The investigator cannot take executive action on their own — only recommend.</p>
+      </div>
+    </div>
+
+    <div class="clause">
+      <div class="clause-num">06</div>
+      <div class="clause-body">
+        <h2>Possible recommendations</h2>
+        <ul>
+          <li>Recall the subject from their position</li>
+          <li>Action under Section 0.9 of the Policy on Affiliated Clubs</li>
+          <li>Mandated additional training</li>
+          <li>A required official apology</li>
+          <li>Escalation to campus police, law enforcement, the Faculty Dean, Student Life, or the University Provost</li>
+          <li>Amendments to EngSoc Bylaws or Policies</li>
+          <li>Any combination of the above, or another justified action</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="contact-block">
+      <div class="seal">NEUTRAL<br>3RD&nbsp;PARTY</div>
+      <div class="contact-text">
+        <h3>File a complaint</h3>
+        <p>Complaints go to the Ombudsperson, a neutral third-party officer:</p>
+        <a class="email" href="mailto:ombudsperson@g.skule.ca">ombudsperson@g.skule.ca</a>
+        <div class="alt-contact">
+          Complaint is <em>about</em> the Ombudsperson instead? Send it to
+          <a href="mailto:speaker@g.skule.ca">speaker@g.skule.ca</a>.
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    Blues Engineering &middot; Affiliated Club, University of Toronto Engineering Society
+  </footer>
+</div>
+
+</body>
+</html>
